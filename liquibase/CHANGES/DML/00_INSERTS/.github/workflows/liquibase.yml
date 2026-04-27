@@ -1,0 +1,37 @@
+name: Validar Base de Datos
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  liquibase-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Mostrar archivos (debug)
+        run: ls -R
+
+      - name: Validar estructura Liquibase
+        run: |
+          if [ ! -f "LIQUIBASE/changelog.yml" ]; then
+            echo "ERROR: No existe changelog.yml"
+            exit 1
+          fi
+
+          if [ ! -d "LIQUIBASE/CHANGES/DDL/01_TABLES" ]; then
+            echo "ERROR: No existe carpeta de tablas"
+            exit 1
+          fi
+
+          echo "Estructura correcta "
