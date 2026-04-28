@@ -18,9 +18,10 @@ jobs:
           echo "Verificando..."
           ls -R
 
-          if [ ! -f "LIQUIBASE/changelog.yml" ]; then
+          if [ ! -f "liquibase/changelog.yml" ]; then
             echo "ERROR: Falta changelog"
             exit 1
           fi
 
-          echo "OK "
+          echo "OK"
+          
