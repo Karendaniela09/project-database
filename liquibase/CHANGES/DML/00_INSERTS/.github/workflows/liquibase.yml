@@ -19,9 +19,9 @@ jobs:
           ls -R
 
           echo "Buscando changelog..."
-          if test -f liquibase/changelog.yml; then
-            echo "Changelog encontrado ✅"
-          else
-            echo "ERROR: Falta changelog ❌"
-            exit 1
-          fi 
+         if [ -f ./liquibase/changelog.yml ]; then
+  echo "Changelog encontrado ✅"
+else
+  echo "ERROR: Falta changelog ❌"
+  exit 1
+fi 
