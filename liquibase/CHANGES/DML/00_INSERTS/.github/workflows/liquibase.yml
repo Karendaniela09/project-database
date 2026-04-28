@@ -24,7 +24,7 @@ jobs:
 
       - name: Validar estructura Liquibase
         run: |
-          if [ ! -f "LIQUIBASE/changelog.yml" ]; then
+          if [ ! -f "liquibase/changelog.yml" ]; then
             echo "ERROR: No existe changelog.yml"
             exit 1
           fi
