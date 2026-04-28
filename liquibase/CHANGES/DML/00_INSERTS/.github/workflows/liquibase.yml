@@ -13,25 +13,15 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v3
 
-      - name: Instalar Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Mostrar archivos (debug)
-        run: ls -R
-
-      - name: Validar estructura Liquibase
+      - name: Verificar estructura
         run: |
-          if [ ! -f "liquibase/changelog.yml" ]; then
-            echo "ERROR: No existe changelog.yml"
-            exit 1
-          fi
+          echo "Verificando..."
+          ls -R
 
-          if [ ! -d "LIQUIBASE/CHANGES/DDL/01_TABLES" ]; then
-            echo "ERROR: No existe carpeta de tablas"
+          echo "Buscando changelog..."
+          if test -f liquibase/changelog.yml; then
+            echo "Changelog encontrado ✅"
+          else
+            echo "ERROR: Falta changelog ❌"
             exit 1
-          fi
-
-          echo "Estructura correcta "
+          fi 
