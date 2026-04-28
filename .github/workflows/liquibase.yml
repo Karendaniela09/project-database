@@ -1,0 +1,26 @@
+name: Validar Base de Datos
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  liquibase-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Verificar estructura
+        run: |
+          echo "Verificando..."
+          ls -R
+
+          if [ ! -f "LIQUIBASE/changelog.yml" ]; then
+            echo "ERROR: Falta changelog"
+            exit 1
+          fi
+
+          echo "OK "
